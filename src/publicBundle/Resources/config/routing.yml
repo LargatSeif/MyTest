@@ -1,0 +1,30 @@
+public_homepage:
+    path:     /
+    defaults: { _controller: publicBundle:home:index }
+
+membersArea:
+    path: /espace_membres
+    defaults: { _controller: publicBundle:membersArea:index }
+######## pages and sections of the plateforme
+adoption:
+    resource: "@publicBundle/Resources/config/routing/adoption.yml"
+    prefix: /annonces/adoption
+accouplement:
+    resource: "@publicBundle/Resources/config/routing/accouplement.yml"
+    prefix: /annonces/accouplement
+
+dresseur:
+    resource: "@publicBundle/Resources/config/routing/dresseurs.yml"
+    prefix: /annonces/dresseurs
+
+veterinaire:
+    resource: "@publicBundle/Resources/config/routing/vets.yml"
+    prefix: /annonces/veterinaire
+
+qr:
+    path: /QuestionReponse
+    defaults: { _controller: publicBundle:qr:index}
+
+shop:
+    path: /boutique
+    defaults: { _controller: publicBundle:shop:index}

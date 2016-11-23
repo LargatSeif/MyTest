@@ -1,0 +1,142 @@
+{% extends "::base.html.twig" %}
+
+{% block custom_css %}
+    <style type="text/css">
+    body {
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+        background-color: #fcfcfc ;
+        background-image: url('{{ asset('images/bg1.jpg') }}');
+        background-size: cover;
+    }
+
+    main {
+        flex: 1 0 auto;
+    }
+    .social_btn {
+        margin-bottom: 20px;
+    }
+    .social_btn a{
+        width: 100%;
+    }
+    .text-nav{
+        color: #fff;
+        font-size: 13px;
+        border-bottom : 4px solid;
+        margin-right: 5px;
+    }
+    .sing-up-grid{
+        background-color: rgba(0,0,0,0.5);
+        padding: 30px;
+    }
+</style>
+{% endblock custom_css %}
+
+{% block body %}
+
+    <header>
+        <nav  class="transparent" style="box-shadow: none" role="navigation">
+            <div class="container nav-wrapper">
+                <a id="logo-container" href="#" class="brand-logo " style="color: #e53935;">
+                    Kalbi.tn
+                </a>
+                <ul class="nav-menu right hide-on-med-and-down">
+                    <li>
+                        <a class="nav-tab1 text-nav" href="#">Devenir dresseur </a>
+                    </li>
+                    <li>
+                        <a class="nav-tab1 text-nav" href="#">Devenir vétérinaire </a>
+                    </li>
+                </ul>
+                <ul class="nav-menu right hide-on-med-and-down">
+                    <li>
+                        <a class="nav-tab1 text-nav" href="#">Contactez-nous !</a>
+                    </li>
+                    <li>
+                        <a class="nav-tab1 text-nav modal-trigger" href="#modal1" data-target="">Mon Compte</a>
+                    </li>
+                </ul>
+
+                <ul id="nav-mobile" class="side-nav">
+                    <li><a class="nav-tab1" href="#">menu1</a></li>
+                    <li><a class="nav-tab1" href="#">menu2</a></li>
+                    <li><a class="nav-tab1" href="#">menu3</a></li>
+                    <li><a class="nav-tab1" href="#">menu4</a></li>
+                </ul>
+                <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="container-1">
+            <div class="row" style="margin-top:8%">
+                <div class="col s12 m6 l3 offset-m3 offset-l8 sing-up-grid">
+                    <h5 class="white-text center">Rejoindre notre communauté</h5>
+                    <div class="row">
+                        <div class="col s12 m12 l12 social_btn">
+                            <a href="{{ path('fos_user_registration_register') }}"
+                               class="btn  waves-effect waves-light  amber accent-3 center">
+                                <i class="material-icons left"></i>S'inscrire avec Email
+                            </a>
+                        </div>
+                        <div class="col s12 m12 l12 social_btn">
+
+                        </div>
+                        <div class="col s12 m12 l12 social_btn">
+                            <a href="{{ path('facebook_btn') }}" class="btn   waves-effect waves-light light-blue darken-4 center">
+                                <i class="material-icons left"></i>Se connecter avec F
+                            </a>
+                        </div>
+
+                        <div class="col s12 m12 l12 social_btn">
+                            <a class="btn   waves-effect waves-light light-blue accent-2 center ">
+                                <i class="material-icons left"></i>Se connecter avec T</a>
+                        </div>
+
+                        <div class="col s12 m12 l12 social_btn">
+                            <a class="btn   waves-effect waves-light btn  red darken-4 center">
+                                <i class="material-icons left"></i>Se connecter avec G+</a>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4>Connectez-vous pour accéder à nos services !</h4>
+            <div>
+                {% render (controller("FOSUserBundle:Security:login")) %}
+            </div>
+        </div>
+        <div class="modal-footer">
+
+            <a class="waves-effect waves-green green white-text btn-flat" onclick="$('#_submit').click();">Se connecter</a>
+        </div>
+    </div>
+    <!-- /modal -->
+
+    <!-- facebook init -->
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '1181297681936071',
+                xfbml      : true,
+                version    : 'v2.8'
+            });
+        };
+
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+{% endblock body %}

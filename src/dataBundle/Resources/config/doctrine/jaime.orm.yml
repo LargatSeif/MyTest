@@ -1,0 +1,21 @@
+dataBundle\Entity\jaime:
+    type: entity
+    table: null
+    repositoryClass: dataBundle\Repository\jaimeRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        createdAt:
+            type: datetime
+    manyToOne:
+        question:
+            targetEntity: dataBundle\Entity\question
+            inversedBy: jaime
+        user:
+            targetEntity: userBundle\Entity\User
+            inversedBy: jaime
+    lifecycleCallbacks: {  }

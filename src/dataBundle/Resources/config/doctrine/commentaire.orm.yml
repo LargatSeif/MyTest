@@ -1,0 +1,24 @@
+dataBundle\Entity\commentaire:
+    type: entity
+    table: null
+    repositoryClass: dataBundle\Repository\commentaireRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        text:
+            type: string
+            length: 255
+            nullable: false
+    manyToOne:
+        question:
+            targetEntity: dataBundle\Entity\question
+            inversedBy: comments
+        user:
+            targetEntity: userBundle\Entity\User
+            inversedBy: comments
+
+    lifecycleCallbacks: {  }

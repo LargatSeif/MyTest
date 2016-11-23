@@ -1,0 +1,6 @@
+accouplement_index:
+    path: /
+    defaults: { _controller: publicBundle:accouplement:index }
+accouplement_show_dog:
+    path: /{dogName}.{dogID}
+    defaults: { _controller: publicBundle:accouplement:show}

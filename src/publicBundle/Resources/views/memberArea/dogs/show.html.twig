@@ -1,0 +1,273 @@
+{#{% extends "FOSUserBundle::layout.html.twig" %}#}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% extends "::base.html.twig" %}
+{#{% block fos_user_content %}#}
+{% block title %} Mes Chiens {% endblock title %}
+{% block custom_css %}
+    <style>
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+            background-color: #f5f5f5 ;
+        }
+        main {
+            flex: 1 0 auto;
+        }
+        .myCard{
+            background-color: rgba(0,0,0,0.8) !important;
+            color:#fff;
+            border-radius: 100%;
+            overflow: hidden !important;
+            padding-top:20% !important;
+
+        }
+        .myCard > p{
+            font-size: 13px !important;
+            text-decoration: underline;
+            width: 100% !important;
+        //line-height: 10px !important;
+            cursor: default !important;
+        }
+        .myCard > p > i{
+            font-size: 13px !important;
+            cursor: default !important;
+        }
+        .myCard-title{
+            font-weight: 900 !important;
+            font-size: 13px !important;
+        }
+        .myCard-title > a{
+            color: #FFF;
+            cursor: pointer;
+        }
+        .myCard-title > a:hover{
+            color: #ffc107;
+            text-decoration: underline;
+        }
+        .header-1{
+            border-top: 3px solid #03a9f4 ;
+        }
+        .header-2{
+            color: #F44336;
+            border-bottom: 3px solid #ffb300;
+        }
+        .header-3{
+            color: #4e342e;
+            border-bottom: 3px solid #4e342e;
+        }
+
+        /* label color */
+        .input-field label {
+            color: #313131;
+        }
+        .input-field input ,.input-field label , .input-field textarea{
+            font-size: 13px;
+        }
+    /* TEXT INPUT ***************************/
+        /* label focus color */
+        .input-field input[type=text]:focus + label {
+            color: #1976D2;
+        }
+        /* label underline focus color */
+        .input-field input[type=text]:focus {
+            border-bottom: 2px solid #1976D2;
+            box-shadow: 0 2px 0 0 #1976D2;
+        }
+        /* valid color */
+        .input-field input[type=text].valid {
+            border-bottom: 2px solid #00695c;
+            box-shadow: 0 2px 0 0 #00695c;
+        }
+        /* invalid color */
+        .input-field input[type=text].invalid {
+            border-bottom: 2px solid #a21318;
+            box-shadow: 0 2px 0 0 #a21318;
+        }
+    /* EMAIL INPUT *************************/
+        /* label focus color */
+        .input-field input[type=email]:focus + label {
+            color: #1976D2;
+        }
+        /* label underline focus color */
+        .input-field input[type=email]:focus {
+            border-bottom: 2px solid #1976D2;
+            box-shadow: 0 2px 0 0 #1976D2;
+        }
+        /* valid color */
+        .input-field input[type=email].valid {
+            border-bottom: 2px solid #00695c;
+            box-shadow: 0 2px 0 0 #00695c;
+        }
+        /* invalid color */
+        .input-field input[type=email].invalid {
+            border-bottom: 2px solid #a21318;
+            box-shadow: 0 2px 0 0 #a21318;
+        }
+        /* icon prefix focus color */
+        .input-field .prefix.active {
+            color: #000;
+        }
+        .tabs .tab li > a  {
+            background-color: #03A9F4 !important;
+        }
+    </style>
+{% endblock custom_css %}
+{% block body %}
+    {% include "::navbar.html.twig" %}
+
+    <main>
+        <div class="container " style="margin-top: 1%;padding: 0.1% 1% 0.1% 1%">
+            <div class="row" >
+                <div class="col s12 m12 l12 white header-1">
+                    <a href="{{ path('dog_list') }}">
+                        <h5 class="light-blue-text" style="padding-bottom: 1%">Mes chiens</h5>
+                    </a>
+                </div>
+
+            </div>
+            <div class="row " style="padding-top:0;">
+
+                <div class="col s12 m3 l5 center white z-depth-1" style="border-right: 0 solid #1e88e5;padding: 0 1% 1% 1%;margin-right:8.2%" >
+
+
+                    <div class="col s6 m6 l12 offset-s3 offset-m3 center "  >
+
+                        <div class="card" style="border-radius: 100%">
+                            <div class="card-image" >
+                                {% if dog.photo.path is defined %}
+                                    {% set img = asset(dog.photo.AssetPath)  %}
+                                {% else %}
+                                    {% set img = asset('images/profile_exp.png')  %}
+                                {% endif %}
+                                <img src="{{ img }}"
+                                     class="valign profile-image"
+                                     height="350"
+                                     style="border: 0px solid #ffffff;border-radius: 0"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m8 l6 center white z-depth-1" style="">
+                    <div class="col s12 m12 l12" style="min-height:400px">
+                        {% include "@public/memberArea/dogs/show_content.html.twig" %}
+                    </div>
+                    <div class="col s12 m12 l12 input-field">
+                        <a href="{{ path('dog_edit',{'dogID': dog.id}) }}" class="btn right blue" style="width: 100%">
+                            <i class="material-icons left">settings</i>
+                            Modifier
+                        </a>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </main>
+    <!-- modals
+    <div id="modal1" class="modal " style="">
+        <div class="modal-content" >
+            <h6>Dog Nickname</h6>
+            <div class="row">
+                <form class="col s12">
+                    <div class="row">
+
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer container">
+            <a class="btn modal-action modal-close waves-effect waves-green right ">
+                <i class="material-icons right">send</i>Envoyer
+            </a>
+        </div>
+    </div>
+     /Modals -->
+    {#<div class="fixed-action-btn " style="bottom: 45px; right: 45px;">
+        <a class="btn-large btn-floating  grey-text blue darken-1 tooltipped"
+           data-position="left" data-delay="50" data-tooltip="Actions">
+            <i class="material-icons">settings</i>
+        </a>
+        <ul>
+            <li>
+                <a class="btn-floating green darken-1 tooltipped"
+                   data-position="left" data-delay="50" data-tooltip="Sauvegarder les modifications">
+                    <i class="material-icons">save</i>
+                </a>
+            </li>
+            <li>
+                <a class="btn-floating red tooltipped"
+                   data-position="left" data-delay="50" data-tooltip="Changer le mot de passe">
+                    <i class="material-icons">lock</i>
+                </a>
+            </li>
+            <li>
+                <a class="btn-floating brown darken-1 tooltipped"
+                   data-position="left" data-delay="50" data-tooltip="Mes des chiens">
+                    <i class="material-icons">list</i>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+    #}
+{% block footer %}{% endblock footer %}
+{% block custom_js %}
+<script>
+    $(document).ready(function(){
+
+        $('.modal-trigger').leanModal({
+                    dismissible: true, // Modal can be dismissed by clicking outside of the modal
+                    opacity: .5, // Opacity of modal background
+                    in_duration: 300, // Transition in duration
+                    out_duration: 200, // Transition out duration
+                    starting_top: '10%', // Starting top style attribute
+                    ending_top: '10%', // Ending top style attribute
+                    ready: function() {  }, // Callback for Modal open
+                    complete: function() {
+                        Materialize.toast('Modification sauvegarder', 4000);
+                    } // Callback for Modal close
+                }
+        );
+        $('ul.tabs').tabs();
+        var theCard = $('.card');
+        $('select').material_select();
+
+        theCard.mouseenter(function(e){
+            if ($(this).find('> .card-reveal').length) {
+                if ($(e.target).is($('.card .activator')) || $(e.target).is($('.card .activator i')) ) {
+                    // Make Reveal animate up
+                    $(this).find('.card-reveal').css({ display: 'block'}).velocity("stop", false).velocity(
+                            {translateY: '-100%'},
+                            {
+                                duration: 300,
+                                queue: false,
+                                easing: 'easeInOutQuad'
+                            });
+                }
+            }
+
+            $('.card-reveal').closest('.card').css('overflow', 'hidden');
+
+        });
+
+        theCard.mouseleave(function(){
+            // Make Reveal animate down and display none
+            $(this).find('.card-reveal').velocity(
+                    {translateY: 0},
+                    {
+                        duration: 225,
+                        queue: false,
+                        easing: 'easeInOutQuad',
+                        complete: function() {
+                            $(this).css({ display: 'none'});
+                        }
+            });
+        });
+
+    });
+</script>
+{% endblock custom_js %}
+{% endblock body %}
+{#{% endblock fos_user_content %}#}

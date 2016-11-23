@@ -1,0 +1,42 @@
+dataBundle\Entity\chien:
+    type: entity
+    table: chiens
+    repositoryClass: dataBundle\Repository\chienRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nom:
+            type: string
+            length: 255
+        sexe:
+            type: string
+            length: '4'
+        age:
+            type: date
+        taille:
+            type: string
+            length: 255
+
+    manyToOne:
+        maitre:
+            targetEntity: userBundle\Entity\User
+            inversedBy: chien
+        etat:
+            targetEntity: dataBundle\Entity\etat
+            cascade: ["persist"]
+            inversedBy: chien
+        race:
+            targetEntity: dataBundle\Entity\race
+            inversedBy: chien
+    oneToOne:
+        photo:
+            targetEntity: dataBundle\Entity\photoDog
+            joinColumn:
+                name: photo
+                referencedColumnName: id
+            cascade: ["persist"]
+    lifecycleCallbacks: {  }

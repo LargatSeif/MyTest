@@ -1,0 +1,55 @@
+<?php
+
+namespace dataBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * periode
+ */
+class periode
+{
+    /**
+     * @var int
+     */
+    private $id;
+
+    /**
+     * @var string
+     */
+    private $dateDebut;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set dateDebut
+     *
+     * @param string $dateDebut
+     * @return periode
+     */
+    public function setDateDebut($dateDebut)
+    {
+        $this->dateDebut = $dateDebut;
+
+        return $this;
+    }
+
+    /**
+     * Get dateDebut
+     *
+     * @return string 
+     */
+    public function getDateDebut()
+    {
+        return $this->dateDebut;
+    }
+}

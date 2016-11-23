@@ -1,0 +1,25 @@
+dataBundle\Entity\question:
+    type: entity
+    table: null
+    repositoryClass: dataBundle\Repository\questionRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        text:
+            type: string
+            length: 255
+            nullable: false
+
+    oneToMany:
+        comments:
+            targetEntity: dataBundle\Entity\commentaire
+            mappedBy: question
+        jaime:
+            targetEntity: dataBundle\Entity\jaime
+            mappedBy: question
+
+    lifecycleCallbacks: {  }

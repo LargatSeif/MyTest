@@ -1,0 +1,8 @@
+services:
+#    public.example:
+#        class: publicBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]
+    public.twig.age_extension:
+        class: publicBundle\Twig\AgeExtension
+        tags:
+            - { name: twig.extension }

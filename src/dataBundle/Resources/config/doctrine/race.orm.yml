@@ -1,0 +1,25 @@
+dataBundle\Entity\race:
+    type: entity
+    table: null
+    repositoryClass: dataBundle\Repository\raceRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        libelle:
+            type: string
+            length: 255
+        type:
+            type: string
+            length: 255
+        info:
+            type: string
+            length: 255
+    oneToMany:
+        chien:
+            targetEntity: dataBundle\Entity\chien
+            mappedBy: race
+    lifecycleCallbacks: {  }

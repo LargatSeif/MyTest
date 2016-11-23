@@ -1,0 +1,28 @@
+userBundle\Entity\gouvernorat:
+    type: entity
+    table: gouvernorat
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nom:
+            type: string
+            length: 30
+        long:
+            type: text
+        lat:
+            type: text
+    oneToMany:
+        delegation:
+            targetEntity: userBundle\Entity\delegation
+            mappedBy: gouvernorat
+
+    #oneToMany:
+    #    artisant:
+    #        targetEntity: coreBundle\Entity\artisant
+    #        mappedBy: delegation
+
+    lifecycleCallbacks: {  }

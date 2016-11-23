@@ -1,0 +1,35 @@
+userBundle\Entity\delegation:
+    type: entity
+    table: delegation
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nom:
+            type: string
+            length: 30
+        long:
+            type: text
+        lat:
+            type: text
+
+    manyToOne:
+        gouvernorat:
+            targetEntity: \userBundle\Entity\gouvernorat
+            inversedBy: delegation
+            joinColumn:
+                name: gouv
+                referencedColumnName: id
+            cascade: ["persist"]
+
+
+
+    #oneToMany:
+    #    artisant:
+    #        targetEntity: coreBundle\Entity\artisant
+    #        mappedBy: delegation
+
+    lifecycleCallbacks: {  }

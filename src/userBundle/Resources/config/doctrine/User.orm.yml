@@ -1,0 +1,75 @@
+userBundle\Entity\User:
+    type:  entity
+    table: fos_user
+    repositoryClass: userBundle\Repository\UserRepository
+
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+
+    fields:
+        facebook_id:
+            type: string
+            length: 255
+            nullable: true
+        facebookAccessToken:
+            type: string
+            length: 255
+            nullable: true
+        google_id:
+            type: string
+            length: 255
+            nullable: true
+        google_access_token:
+            type: string
+            length: 255
+            nullable: true
+        nom:
+            type: text
+            length: 30
+            nullable: true
+        prenom:
+            type: text
+            length: 30
+            nullable: true
+        sexe:
+            type: text
+            length: 1
+            nullable: true
+        datedenaissance:
+            type: date
+            nullable: true
+        tel:
+            type: text
+            length: 8
+            nullable: true
+        bio:
+            type: text
+            length: 255
+            nullable: true
+        gouv:
+            type: string
+            length: 200
+        deleg:
+            type: string
+            length: 200
+    oneToMany:
+        chien:
+            targetEntity: dataBundle\Entity\chien
+            mappedBy: maitre
+        comments:
+            targetEntity: dataBundle\Entity\commentaire
+            mappedBy: user
+        jaime:
+            targetEntity: dataBundle\Entity\jaime
+            mappedBy: user
+
+    oneToOne:
+        photo:
+            targetEntity: dataBundle\Entity\photoProfile
+            joinColumn:
+                name: image
+                referencedColumnName: id
+            cascade: ["persist"]

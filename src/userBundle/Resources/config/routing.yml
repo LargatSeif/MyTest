@@ -1,0 +1,4 @@
+user_homepage:
+    path:     /forbidden
+    defaults: { _controller: userBundle:Default:index }
+

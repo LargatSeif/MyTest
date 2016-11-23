@@ -1,0 +1,6 @@
+dresseurs_index:
+    path: /
+    defaults: { _controller: publicBundle:dresseurs:index }
+dresseurs_show:
+    path: /{dresseurName}.{dresseurID}
+    defaults: { _controller: publicBundle:dresseurs:show}

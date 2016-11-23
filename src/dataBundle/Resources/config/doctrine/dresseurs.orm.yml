@@ -1,0 +1,37 @@
+dataBundle\Entity\dresseurs:
+    type: entity
+    table: null
+    repositoryClass: dataBundle\Repository\dresseursRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nom:
+            type: string
+            length: 255
+        prenom:
+            type: string
+            length: 255
+        adresse:
+            type: string
+            length: 255
+        email:
+            type: string
+            length: 255
+        tel:
+            type: string
+            length: 255
+        dateDeNaissance:
+            type: date
+            column: date_de_naissance
+        gouv:
+            type: string
+            length: 200
+        deleg:
+            type: string
+            length: 200
+
+    lifecycleCallbacks: {  }

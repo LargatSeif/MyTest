@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+        <title>KALBI.tn - {% block title %}Welcome!{% endblock %}</title>
+        <!-- CSS  -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('materialize/css/materialize.css') }}" type="text/css"  media="screen,projection"/>
+        {% endblock %}
+        <style>
+            footer {
+                background-color: rgba(0,0,0,0.7);
+
+            }
+            .side-nav a {
+                color: rgba(0,0,0,0.87);
+                display: block;
+                font-size: 14px;
+                font-weight: 600    ;
+                height: 48px;
+                line-height: 48px;
+                padding: 0 32px;
+            }
+            ul:not(.browser-default) {
+                padding-left: 0;
+                list-style-type: none;
+            }
+            .side-nav li {
+                float: none;
+                line-height: 48px;
+            }
+            .side-nav li.item:hover {
+                background-color: #FF5722;
+
+            }
+            .side-nav li>a>i, .side-nav li>a>[class^="mdi-"], .side-nav li>a>[class*="mdi-"], .side-nav li>a>i.material-icons {
+                float: left;
+                height: 48px;
+                line-height: 48px;
+                margin: 0 32px 0 0;
+                width: 24px;
+                color: rgba(0,0,0,0.54);
+            }
+            .side-nav a:hover{
+                background-color: transparent !important;
+                color: #FF5722;
+            }
+            .side-nav .userView .name, .side-nav .userView .email {
+                font-size: 14px;
+                line-height: 24px;
+            }
+
+            .side-nav .userView {
+                position: relative;
+                padding: 32px 32px 0;
+                margin-bottom: 8px;
+            }
+            .side-nav .userView .circle{
+                height:64px;
+                width: 64px;
+            }
+            .fL{
+                background-color: #FF5722;
+            }
+            .fL:hover{
+                background-color: #FF5722 !important; ;
+            }
+            .no:hover{
+                background-color: #fff !important; ;
+            }
+            .user-roal{
+                color: #ffffff;
+                font-size: 16px;
+                font-weight: 400;
+                margin-top: -2%;
+            }
+            .user-roal-2{
+                color: #ffffff;
+                font-size: 12px;
+                margin-top:-15%
+            }
+
+        </style>
+        {#<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>#}
+        {% block custom_css %}{% endblock custom_css %}
+    </head>
+    <body>
+    {% block body %}{% endblock %}
+    {% block footer %}
+        <!--   footer Section   -->
+        <footer class="">
+            <div class="container" >
+                <div class="row" style="padding-top:2%">
+                    <div class="col l5 hide-on-med-and-down">
+                        <h6 class="white-text">All rights reserved for <a href="#" class="white-text">Kalbi.tn</a> </h6>
+                    </div>
+                    <div class="col s12 m12 l7" style="line-height: 40px;">
+
+                        <div class="col m4 l3 offset-l4 hide-on-small-only">
+                            <span class="white-text" style="font-size: 16px;">Suivez-nous </span>
+                        </div>
+                        <div class="col s3 m2 l1 center ">
+                            <a class="white-text amber text-lighten-3 btn-floating center" href="#!">F</a>
+                        </div>
+                        <div class="col s3 m2 l1 center ">
+                            <a class="white-text amber text-lighten-3 btn-floating center" href="#!">T</a>
+                        </div>
+                        <div class="col s3 m2 l1 center ">
+                            <a class="white-text amber text-lighten-3 btn-floating center" href="#!">G+</a>
+                        </div>
+                        <div class="col s3 m2 l1 center ">
+                            <a class="white-text amber text-lighten-3 btn-floating center" href="#!">I</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </footer>
+    {% endblock footer %}
+    {% block javascripts %}
+        <script src="{{ asset('materialize/js/jquery-2.2.4.min.js') }}"></script>
+        <script src="{{ asset('materialize/js/materialize.min.js') }}"></script>
+
+    {% endblock javascripts %}
+    {% block custom_js %}
+        <script>
+        $('.modal-trigger').leanModal({
+                dismissible: true, // Modal can be dismissed by clicking outside of the modal
+                opacity: .9, // Opacity of modal background
+                in_duration: 300, // Transition in duration
+                out_duration: 200, // Transition out duration
+                starting_top: '10%', // Starting top style attribute
+                ending_top: '10%', // Ending top style attribute
+                ready: function() {  }, // Callback for Modal open
+                complete: function() {} // Callback for Modal close
+        });
+        </script>
+    {% endblock custom_js %}
+    <script>
+        $('.button-collapse').sideNav({
+            menuWidth: 300, // Default is 240
+            edge: 'left', // Choose the horizontal origin
+            closeOnClick: false, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+            draggable: true // Choose whether you can drag to open on touch screens
+        });
+    </script>
+    </body>
+</html>

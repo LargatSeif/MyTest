@@ -1,0 +1,6 @@
+veterinaire_index:
+    path: /
+    defaults: { _controller: publicBundle:veterinaire:index }
+veterinaire_show:
+    path: /{vetName}.{vetID}
+    defaults: { _controller: publicBundle:veterinaire:show}

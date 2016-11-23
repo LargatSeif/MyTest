@@ -1,0 +1,6 @@
+adoption_index:
+    path: /
+    defaults: { _controller: publicBundle:adoption:index }
+adoption_show_dog:
+    path: /{dogName}.{dogID}
+    defaults: { _controller: publicBundle:adoption:show}

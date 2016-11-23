@@ -1,0 +1,25 @@
+userBundle\Entity\local:
+    type: entity
+    table: local
+    repositoryClass: userBundle\Repository\localRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    oneToMany:
+        user:
+            targetEntity: userBundle\Entity\User
+            mappedBy: local
+
+    manyToOne:
+        gouv:
+            targetEntity: userBundle\Entity\gouvernorat
+            inversedBy: local
+            cascade: ["persist"]
+        deleg:
+            targetEntity: userBundle\Entity\delegation
+            inversedBy: local
+            cascade: ["persist"]
+    lifecycleCallbacks: {  }

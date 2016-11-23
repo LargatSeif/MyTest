@@ -1,0 +1,375 @@
+{% extends "::base.html.twig" %}
+{% block title %} Adoption {% endblock title %}
+{% block custom_css %}
+    <style>
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+            background-color: #f5f5f5 ;
+        }
+        main {
+            flex: 1 0 auto;
+        }
+        .myCard{
+            background-color: rgba(0,0,0,0.6) !important;
+            color:#fff;
+            //border-radius: 100%;
+            overflow: hidden !important;
+            padding-top:30% !important;
+
+        }
+        .myCard > p{
+            font-size: 13px !important;
+            text-decoration: underline;
+            width: 100% !important;
+        //line-height: 10px !important;
+            cursor: default !important;
+        }
+        .myCard > p > i{
+            font-size: 13px !important;
+            cursor: default !important;
+        }
+        .myCard-title{
+            font-weight: 900 !important;
+            font-size: 16px !important;
+        }
+        .myCard-title > a{
+            color: #FFF;
+            cursor: pointer;
+        }
+        .myCard-title > a:hover{
+            color: #ffc107;
+            text-decoration: underline;
+        }
+        fieldset{
+            border: 0;
+        }
+        #Container.mix{
+            display: none;
+        }
+        .container:after{
+            content: '';
+            display: inline-block;
+            width: 100%;
+        }
+
+        .container .mix{
+            display: inline-block;
+            width: 49%;
+        }
+
+        .container .mix{
+            display: none;
+        }
+
+        .container .mix:after{
+            content: attr(data-myorder);
+
+        }
+
+        .container .mix:before{
+            content: '';
+            display: inline-block;
+        }
+    </style>
+{% endblock custom_css %}
+{% block body %}
+    {% include "::navbar.html.twig" %}
+    <main>
+      <!-- filters nav -->
+      <div class="container-fluid white row" >
+          <div class="input-field col s12 m3 l3 center" style="">
+              <span style="font-size: 19px;" >Filtrer les rèsultats </span>
+          </div>
+          <div class="col s12 m3 l6" style="border-right:1px solid #f5f5f5;border-left:1px solid #f5f5f5;">
+              <div class="controls" id="Filters">
+                  <div class="col s12 m4 l4 ">
+                      <fieldset>
+                          <select id="sexe" class="browser-default ">
+                              <option value=""  selected >-- SEXE --</option>
+                              <option value=".M">Male</option>
+                              <option value=".F">Femelle</option>
+                          </select>
+                      </fieldset>
+                  </div>
+                  <div class="col s12 m4 l4 ">
+                      <fieldset>
+                          <select class="browser-default" id="gouv" >
+                              <option value="" selected >-- GOUV --</option>
+                          </select>
+                      </fieldset>
+                  </div>
+                  <div class="col s12 m4 l4 ">
+                      <fieldset>
+                          <select class="browser-default" id="deleg" >
+                              <option value=""  selected >-- DELEG --</option>
+                          </select>
+                      </fieldset>
+                  </div>
+
+              </div>
+          </div>
+          <div class="input-field col s12 m3 l3 center" >
+              <a href="#" class="btn light-blue waves-effect hide-on-med-and-down center"  id="Reset">Réinitialisé</a>
+              <a href="#" class="btn light-blue waves-effect hide-on-large-only" style="width:100%" id="Reset">Réinitialisé</a>
+          </div>
+      </div>
+        <!-- breadcrumbs -->
+        <div class=" white">
+            <div class=" ">
+                <a href="{{ path('membersArea') }}" class="amber-text left " style="font-size: 16px;">
+                    <i class="material-icons left">home</i>Espace membres
+                </a>
+                <span><i class="material-icons" style="font-size: 9px">&#xE315;</i></span>
+                <a href="" class="black-text " style="font-size: 16px">
+                    Adoption
+                </a>
+            </div>
+        </div>
+
+        <!-- display results grid -->
+          <div class="row container" id="Container">
+              {% for item in data %}
+                  <div  class="col s12 m4 l3 mix
+                  {{ item.sexe }}
+                  {{ item.maitre.gouv| trim | replace(' ','-') }}
+                  {{ item.maitre.deleg | trim | replace(' ','-') }}
+                  {{ item.age| age | trim | replace(' ','-')}}
+                  " data-myorder="">
+                      <div class="card" style="border-radius: 0">
+                          <div class="card-image " >
+                              {% if item.photo.path is defined %}
+                                  {% set img = asset(item.photo.AssetPath)  %}
+                              {% else %}
+                                  {% set img = asset('images/profile_exp.png')  %}
+                              {% endif %}
+                              <img class="activator" src="{{ img }}" style="border-radius: 0;"
+                                   width="150" height="180" >
+                          </div>
+                          <div class="card-reveal myCard valign-wrapper">
+                          <span class="card-title white-text center myCard-title valign" >
+                                 <a href="{{ path('adoption_show_dog',{'dogID':item.id ,'dogName':item.nom}) }}">
+                                     {{ item.nom }}
+                                     <br>
+                                     {{ item.race.libelle }}
+                                 </a>
+                          </span>
+                          </div>
+                      </div>
+                  </div>
+              {% endfor %}
+              <div id="no-items-msg" style="display: none" >
+
+              </div>
+          </div>
+
+
+    </main>
+{% endblock body %}
+{% block footer %}{% endblock footer %}
+{% block custom_js %}
+<script src="{{ asset('materialize/js/jquery.mixitup.js') }}"></script>
+<script>
+    var dropdownFilter = {
+
+        // Declare any variables we will need as properties of the object
+
+        $filters: null,
+        $reset: null,
+        groups: [],
+        outputArray: [],
+        outputString: '',
+
+        // The "init" method will run on document ready and cache any jQuery objects we will need.
+
+        init: function(){
+            var self = this; // As a best practice, in each method we will asign "this" to the variable "self" so that it remains scope-agnostic. We will use it to refer to the parent "dropdownFilter" object so that we can share methods and properties between all parts of the object.
+
+            self.$filters = $('#Filters');
+            self.$reset = $('#Reset');
+            self.$container = $('#Container');
+
+            self.$filters.find('fieldset').each(function(){
+                self.groups.push({
+                    $dropdown: $(this).find('select'),
+                    active: ''
+                });
+            });
+
+            self.bindHandlers();
+        },
+
+        // The "bindHandlers" method will listen for whenever a select is changed.
+
+        bindHandlers: function(){
+            var self = this;
+
+            // Handle select change
+
+            self.$filters.on('change', 'select', function(e){
+                e.preventDefault();
+
+                self.parseFilters();
+            });
+
+            // Handle reset click
+
+            self.$reset.on('click', function(e){
+                e.preventDefault();
+
+                self.$filters.find('select').val('');
+
+
+                self.parseFilters();
+            });
+        },
+
+        // The parseFilters method pulls the value of each active select option
+
+        parseFilters: function(){
+            var self = this;
+
+            // loop through each filter group and grap the value from each one.
+
+            for(var i = 0, group; group = self.groups[i]; i++){
+                group.active = group.$dropdown.val();
+            }
+
+            self.concatenate();
+        },
+
+        // The "concatenate" method will crawl through each group, concatenating filters as desired:
+
+        concatenate: function(){
+            var self = this;
+
+            self.outputString = ''; // Reset output string
+
+            for(var i = 0, group; group = self.groups[i]; i++){
+                self.outputString += group.active;
+            }
+
+            // If the output string is empty, show all rather than none:
+
+            !self.outputString.length && (self.outputString = 'all');
+
+            //console.log(self.outputString);
+
+            // ^ we can check the console here to take a look at the filter string that is produced
+
+            // Send the output string to MixItUp via the 'filter' method:
+
+            if(self.$container.mixItUp('isLoaded')){
+                self.$container.mixItUp('filter', self.outputString);
+            }
+        }
+    };
+    $.ajax(
+            {
+                url: "http://kalbi.tn/app_dev.php/ajaxGouv",
+                method: "POST",
+                data: {data:''}
+            }
+    ).done(function (gouvs) {
+        var data = JSON.parse(gouvs);
+        console.log(data);
+        data.forEach(function(item){
+            var option = document.createElement('option');
+            var nosp = item.trim();
+            var newItem = nosp.replace(/\s/g, '-');
+            option.value = '.'+newItem;
+            option.text = item;
+            $('#gouv').append(option);
+        });
+    });
+
+    $(document).ready(function() {
+        $('#gouv').on('change', function() {
+            var selected = $(this).find(":selected").text();
+            console.log(selected);
+            $.ajax({
+                        method: "POST",
+                        url: "http://kalbi.tn/app_dev.php/ajaxDeleg",
+                        data: {data: selected}
+                    }
+            ).done(function (msg) {
+                var data = JSON.parse(msg);
+                $('#deleg').html('<option value="">-- DELEG --</option>');
+
+                data.forEach(function (item) {
+                    var option = document.createElement('option');
+                    var nosp = item.trim();
+                    var newItem = nosp.replace(/\s/g, '-');
+                    option.value = '.' + newItem;
+                    option.text = item;
+                    $('#deleg').append(option);
+                });
+            });
+        });
+
+        dropdownFilter.init();
+
+        // Instantiate MixItUp
+
+        $('#Container').mixItUp({
+            controls: {
+                enable: false // we won't be needing these
+            },
+            callbacks: {
+                onMixEnd: function(state){
+                    $('#no-items-msg').hide();
+                },
+                onMixFail: function(){
+                    if($('#no-items-msg').css('display')=='block'){
+                        $('#no-items-msg').html('<h2>No items were found matching the selected filters.</h2>');
+                    }
+                    else{
+                        $('#no-items-msg').show();
+                        $('#no-items-msg').html('<h2>No items were found matching the selected filters.</h2>');
+                    }
+
+                }
+            }
+        });
+
+    var theCard = $('.card');
+    $('select').material_select();
+            $('select').material_select();
+
+            theCard.mouseenter(function(e){
+                if ($(this).find('> .card-reveal').length) {
+                    if ($(e.target).is($('.card .activator')) || $(e.target).is($('.card .activator i')) ) {
+                        // Make Reveal animate up
+                        $(this).find('.card-reveal').css({ display: 'block'}).velocity("stop", false).velocity(
+                                {translateY: '-100%'},
+                                {
+                                    duration: 300,
+                                    queue: false,
+                                    easing: 'easeInOutQuad'
+                                });
+                    }
+                }
+
+                $('.card-reveal').closest('.card').css('overflow', 'hidden');
+
+            });
+
+            theCard.mouseleave(function(){
+                // Make Reveal animate down and display none
+                $(this).find('.card-reveal').velocity(
+                        {translateY: 0},
+                        {
+                            duration: 225,
+                            queue: false,
+                            easing: 'easeInOutQuad',
+                            complete: function() {
+                                $(this).css({ display: 'none'});
+                            }
+                        });
+            });
+
+
+        });
+    </script>
+{% endblock custom_js %}

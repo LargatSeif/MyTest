@@ -1,0 +1,73 @@
+{{ form_start(edit_form) }}
+    <div class="col s12" >
+            <div class="col s12 m4 l4 input-field hide-on-small-only">
+                {{ form_label(edit_form.nom) }}
+            </div>
+            <div class="col s12 m8 l8 input-field">
+                {{ form_widget(edit_form.nom) }}
+            </div>
+            <div class="col s12 m4 l4 input-field hide-on-small-only">
+                {{ form_label(edit_form.age) }}
+            </div>
+            <div class="col s12 m8 l8 input-field">
+                {{ form_widget(edit_form.age) }}
+            </div>
+            <div class="col s12 m4 l4 input-field hide-on-small-only">
+                {{ form_label(edit_form.sexe) }}
+            </div>
+            <div class="col s12 m8 l8 input-field">
+                {{ form_widget(edit_form.sexe) }}
+            </div>
+            <div class="col s12 m4 l4 input-field hide-on-small-only">
+                {{ form_label(edit_form.taille) }}
+            </div>
+            <div class="col s12 m8 l8 input-field">
+                {{ form_widget(edit_form.taille) }}
+            </div>
+            <div class="col s12 m8 l12 input-field">
+                <h5 class="left red-text">Etat du chien</h5>
+            </div>
+            <div class="col s12 m4 l4 offset-l2 input-field hide-on-small-only">
+                {{ form_label(edit_form.etat.vente) }}
+            </div>
+            <div class="col s12 m8 l6 input-field">
+                {{ form_widget(edit_form.etat.vente) }}
+            </div>
+            <div class="col s12 m4 l4 offset-l2 input-field hide-on-small-only">
+                {{ form_label(edit_form.etat.adoption) }}
+            </div>
+            <div class="col s12 m8 l6 input-field">
+                {{ form_widget(edit_form.etat.adoption) }}
+            </div>
+    {#
+        {% if dog.sexe == 'F' %}
+            <div class="col s12 m8 l12 input-field">
+                <h5 class="left red-text">Période de chaleur </h5>
+            </div>
+            <div class="col s12 m4 l4 offset-l2 input-field hide-on-small-only">
+                {{ form_label(edit_form.etat.periode.dateDebut) }}
+            </div>
+            <div class="col s12 m8 l6 input-field">
+                {{ form_widget(edit_form.etat.periode.dateDebut) }}
+            </div>
+            <div class="col s12 m4 l4 offset-l2 input-field hide-on-small-only">
+                {{ form_label(edit_form.etat.periode.dateFin) }}
+            </div>
+            <div class="col s12 m8 l6 input-field">
+                {{ form_widget(edit_form.etat.periode.dateFin) }}
+            </div>
+        {% endif %}
+            <div class="col s12 m8 l12 input-field">
+                <h5 class="left red-text">Race du chien</h5>
+            </div>
+            <div class="col s12 m4 l4 offset-l2 input-field hide-on-small-only">
+                {{ form_label(edit_form.race) }}
+            </div>
+            <div class="col s12 m8 l6 input-field">
+                {{ form_widget(edit_form.race) }}
+            </div>
+    #}
+
+        {{ form_end(edit_form) }}
+
+    </div>

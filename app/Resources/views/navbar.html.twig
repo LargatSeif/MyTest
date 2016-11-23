@@ -1,0 +1,132 @@
+{% block navbar %}
+    <header>
+        <nav class="navbar-fixed brown  ">
+            <!-- Dropdawn menu-->
+            <ul id="dropdown1" class="dropdown-content" style="margin-top: 60px;width:20%">
+                <li>
+                    <a href="{{ path('dog_list') }}" class="red-text accent-3 small-text">
+                        <i class="material-icons left">list</i>Mes chiens
+                    </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="#!" class="red-text accent-3 small-text">
+                        <i class="material-icons left ">loyalty</i>Mes favoris
+                    </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="{{ path('fos_user_profile_edit') }}" class="red-text accent-3 small-text">
+                        <i class="material-icons left">settings</i>Réglage
+                    </a>
+                </li>
+
+                <li class="divider"></li>
+                <li>
+                    <a href="{{ path('fos_user_security_logout') }}" class="red-text accent-3 small-text">
+                        <i class="material-icons left">settings_power</i>Déconnexion
+                    </a>
+                </li>
+            </ul>
+            <!-- the main navbar -->
+            <nav class="" style="box-shadow: none">
+                <div class="nav-wrapper deep-orange "  style="color: #e53935;">
+                    <a href="{{ path('membersArea') }}" class="brand-logo  white-text accent-3 hide-on-med-and-down" style="margin-left: 8%">
+                        Kalbi.tn
+                    </a>
+                    <a href="{{ path('membersArea') }}" class="brand-logo  white-text accent-3 hide-on-large-only show-on-small-only" >
+                        Kalbi.tn
+                    </a>
+                    <ul class="right hide-on-med-and-down ">
+                        <li>
+                            <a class="dropdown-button white-text accent-3"  href="#" data-below-origin="true" data-constrainwidth="false" data-activates="dropdown1">
+                                {{ app.user.username }} <i class="material-icons right">arrow_drop_down</i>
+                            </a>
+                        </li>
+                    </ul>
+                    {#SIDE NAV
+                    <ul class="side-nav" id="mobile-demo"   >
+                        <li><a href="" style="color: #e53935;font-size: 26px;font-weight: 700">Kalbi.tn</a></li>
+                        <li class="" >
+                             <div class="row blue-grey lighten-4" style="padding-bottom: -2% ;">
+                                <div class="col col s4 m4 l4" style="padding-top:4%">
+                                    {% if app.user.photo.path is defined %}
+                                        {% set img = asset(app.user.photo.AssetPath)  %}
+                                    {% else %}
+                                        {% set img = asset('images/profile_exp.png')  %}
+                                    {% endif %}
+                                    <img src="{{ img }}"
+                                         class="circle responsive-img valign profile-image"
+                                         style="border: 4px solid #ffffff"
+                                    >
+                                </div>
+                                <div class="col col s8 m8 l8" style="padding-top:4%">
+                                     <p class="user-roal" style="">{{ app.user.username }}</p>
+                                     <p class="user-roal-2">{{ app.user.email }}</p>
+                                </div>
+
+                            </div>
+                        </li>
+                        <li>
+                            <a href="{{ path('fos_user_profile_edit') }}" class=""  >
+                                <i class="material-icons right" style="line-height: 50px;font-size: 20px">settings</i>
+                                Paramétres du compte
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" class=""  >
+                                Mes Chiens
+                            </a>
+                        </li>
+
+                        <li><a href="#" style="background-color:#DE3C74;" class="white-text">Accouplement</a></li>
+                        <li><a href="#" style="background-color:#8F7044" class="white-text">Adoption</a></li>
+                        <li><a href="#" style="background-color:#4D8DC5" class="white-text">Dresseurs</a></li>
+                        <li><a href="#" style="background-color:#D74258" class="white-text">Véterinaires</a></li>
+                        <li><a href="#" style="background-color:#FAC545" class="white-text">Question/Réponses</a></li>
+                        <li><a href="#" style="background-color:#A1CA54" class="white-text">E-boutique</a></li>
+                    </ul>
+                    <a href="#" data-activates="mobile-demo" class="button-collapse show-on-large">
+                        <i class="material-icons">menu</i>
+                    </a>
+                #}
+                    <ul id="slide-out" class="side-nav">
+                        <li class="no center" style="padding-top: 6px;padding-bottom: 6px;">
+                                <span style="font-size: 22px;font-weight: 700" class=" deep-orange-text">
+                                    KALBI.tn
+                                </span>
+
+                        </li>
+
+
+                        <li class="fL">
+                            <div class="userView">
+                                {% if app.user.photo.path is defined %}
+                                    {% set img = asset(app.user.photo.AssetPath)  %}
+                                {% else %}
+                                    {% set img = asset('images/profile_exp.png')  %}
+                                {% endif %}
+                                <a style="cursor: default">
+                                    <img class="circle responsive-img valign profile-image" src="{{ img }}">
+                                </a>
+                                <a style="cursor: default"><span class="white-text name">{{ app.user.usernameCanonical }}</span></a>
+                                <a style="cursor: default"><span class="white-text email">{{ app.user.emailCanonical }}</span></a>
+                            </div>
+                        </li>
+                        <li><a href="{{ path('fos_user_profile_show') }}"><i class="material-icons deep-orange-text">settings</i>Réglages</a></li>
+                        <li><a href="{{ path('dog_list') }}"><i class="material-icons deep-orange-text">list</i>Mes Chiens</a></li>
+                        <li><div class="divider"></div></li>
+                        <li class="item"><a href="{{ path('accouplement_index') }}" style="background-color:#DE3C74;" class="white-text ">Accouplement</a></li>
+                        <li class="item"><a href="{{ path('adoption_index') }}" style="background-color:#8F7044" class="white-text ">Adoption</a></li>
+                        <li class="item"><a href="{{ path('dresseurs_index') }}" style="background-color:#4D8DC5" class="white-text ">Dresseurs</a></li>
+                        <li class="item"><a href="{{ path('veterinaire_index') }}" style="background-color:#D74258" class="white-text ">Véterinaires</a></li>
+                        <li class="item"><a href="{{ path('qr') }}" style="background-color:#FAC545" class="white-text ">Question/Réponses</a></li>
+                        <li class="item"><a href="{{ path('shop') }}" style="background-color:#A1CA54" class="white-text ">E-boutique</a></li>
+                    </ul>
+                    <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
+
+                </div>
+            </nav>
+        </nav>
+    </header>
+{% endblock navbar %}

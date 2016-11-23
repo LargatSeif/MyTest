@@ -1,0 +1,64 @@
+
+<div class="col s12 fos_user_user_show show" >
+    <div class="col s12 m4 l12 input-field  ">
+        <h6 class="left" style="text-decoration: underline">Information</h6>
+    </div>
+        <div class="col s4 m4 l4 input-field">
+            <label for="nom">Nom</label>
+        </div>
+        <div class="col s8 m8 l8 input-field">
+            {{ dog.nom }}
+        </div>
+
+        <div class="col s4 m4 l4 input-field  ">
+            <label for="race">Race</label>
+        </div>
+        <div class="col s8 m8 l8 input-field">
+            {{ dog.race.libelle }}
+        </div>
+
+        <div class="col s4 m4 l4 input-field  ">
+            <label for="age">Age</label>
+        </div>
+        <div class="col s8 m8 l8 input-field">
+            {{ dog.age|age }}
+        </div>
+
+        <div class="col s4 m4 l4 input-field  ">
+            <label for="taille">Taille</label>
+        </div>
+        <div class="col s8 m8 l8 input-field">
+            {{ dog.taille }}
+        </div>
+
+        <div class="col s4 m4 l4 input-field  ">
+            <label for="sexe">Sexe</label>
+        </div>
+        <div class="col s8 m8 l8 input-field">
+            {% if dog.sexe == 'M' %}{{ 'Male' }}{% else %} {{ 'Femelle' }}{% endif %}
+        </div>
+
+        <div class="col s12 m4 l12 input-field ">
+            <h6 class="left" style="text-decoration: underline">Etat</h6>
+        </div>
+        <div class="col s4 m4 l4 input-field  ">
+            <label for="vente">En vente</label>
+        </div>
+        <div class="col s8 m8 l8 input-field">
+            {% if dog.etat.vente == 0 %}<span id="vente" class="red-text">NON</span>{% else %}<span id="vente" class="green-text">OUI</span>{% endif %}
+        </div>
+        <div class="col s4 m4 l4 input-field  ">
+            <label for="adoption">En adoption</label>
+        </div>
+        <div class="col s8 m8 l8 input-field">
+            {% if dog.etat.adoption == 0 %}<span id="adoption" class="red-text">NON</span>{% else %}<span id="adoption" class="green-text">OUI</span>{% endif %}
+        </div>
+        <div class="col s4 m4 l4 input-field  ">
+            <label for="periode">En accouoplement</label>
+        </div>
+        <div class="col s8 m8 l8 input-field center">
+            {% if dog.etat.accouplement == 0 %}<span id="adoption" class="red-text">NON</span>{% else %}<span id="adoption" class="green-text">OUI</span>{% endif %}
+
+        </div>
+
+</div>

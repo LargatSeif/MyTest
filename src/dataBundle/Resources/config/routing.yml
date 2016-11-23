@@ -1,0 +1,3 @@
+dogs:
+    resource: "@dataBundle/Resources/config/routing/dogs.yml"
+    prefix:   /mesChiens

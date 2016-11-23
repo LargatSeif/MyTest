@@ -1,0 +1,101 @@
+{% extends "::base.html.twig" %}
+{% block title %} Espace membres {% endblock title %}
+{% block custom_css %}
+    <style>
+        body{
+            background-color: #f5f5f5;
+        }
+        .transparentss{
+            background: #ff1744;
+
+        }
+        .rounded-menu-item{
+            border-radius: 100%;
+            margin-right: 50px;
+            line-height: 150px;
+            width: 220px;
+            color:#FFF;
+        }
+        .rounded-menu-item-link{
+            margin-right: 0px;
+            line-height: 150px;
+            background-color: none;
+            font-size: 22px;
+            font-family: "Roboto", sans-serif;
+            color:#FFF;
+        }
+        .small-text{
+            font-size: 11px;
+        }
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+            background-color: #f5f5f5 ;
+        }
+
+        main {
+            flex: 1 0 auto;
+        }
+    </style>
+{% endblock custom_css %}
+{% block body %}
+{% include "::navbar.html.twig" %}
+    <main style="padding-top: 5%">
+        <div class="container" style="">
+            <div class="row">
+                <div class="col s12 m4 l2 offset-l3" >
+                    <a class="rounded-menu-item-link " href="{{ path('accouplement_index') }}">
+                        <img src="{{ asset('images/menu/accouplement.png') }}"  class="responsive-img circle hoverable" alt="">
+                    </a>
+                </div>
+                <div class="col s12 m4 l2 " >
+                    <a href="{{ path('adoption_index') }}">
+                        <img src="{{ asset('images/menu/adoption.png') }}"  class="responsive-img circle hoverable" alt="">
+                    </a>
+                </div>
+                <div class="col s12 m4 l2 ">
+                    <a class="rounded-menu-item-link " href="{{ path('dresseurs_index') }}">
+                        <img src="{{ asset('images/menu/dresseur.png') }}"  class="responsive-img circle hoverable" alt="">
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m4 l2 offset-l3  " >
+                    <a class="rounded-menu-item-link "  href="{{ path('veterinaire_index') }}">
+                        <img src="{{ asset('images/menu/vets.png') }}"  class="responsive-img circle hoverable" alt="">
+                    </a>
+                </div>
+                <div class="col s12 m4 l2 ">
+                    <a class="rounded-menu-item-link" href="{{ path('qr') }}">
+                        <img src="{{ asset('images/menu/QR.png') }}"  class="responsive-img circle hoverable" alt="">
+                    </a>
+                </div>
+                <div class="col s12 m4 l2 ">
+                    <a class="rounded-menu-item-link" href="{{ path('shop') }}">
+                        <img src="{{ asset('images/menu/shop.png') }}"  class="responsive-img circle hoverable" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- First row of items -->
+
+    </main>
+{% endblock body %}
+{% block custom_js %}
+    <script>
+        $(document).ready(function () {
+            $('.dropdown-button').dropdown({
+                        inDuration: 300,
+                        outDuration: 225,
+                        constrain_width: true, // Does not change width of dropdown to that of the activator
+                        hover: false, // Activate on hover
+                        gutter: false, // Spacing from edge
+                        belowOrigin: false, // Displays dropdown below the button
+                        alignment: 'left' // Displays dropdown with edge aligned to the left of button
+                    }
+            );
+         });
+
+    </script>
+{% endblock custom_js %}

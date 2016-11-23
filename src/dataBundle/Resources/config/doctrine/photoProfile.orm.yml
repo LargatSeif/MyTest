@@ -1,0 +1,35 @@
+dataBundle\Entity\photoProfile:
+    type: entity
+    table: photoProfile
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    properties:
+        file:
+            - File:
+                maxSize: 6000000
+    fields:
+        name:
+            type: string
+            length: 255
+            nullable: true
+
+        path:
+            type: string
+            length: 255
+            nullable: true
+
+    lifecycleCallbacks:
+
+        preUpdate:     [ preUpload ]
+        postUpdate:    [ upload ]
+
+        prePersist:   [ preUpload ]
+        postPersist:  [ upload ]
+
+        postRemove:   [ removeUpload ]
+
+

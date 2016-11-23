@@ -1,0 +1,12 @@
+{% extends "::base.html.twig" %}
+{% block title %} Accouplement {% endblock title %}
+{% block body %}
+    <header>
+        <h2 style="float:left;width:100%;">KALBI.tn</h2>
+        <a href="#{{ app.user.id }}" >{{ app.user.username }}</a>
+        <a href="{{ path('fos_user_security_logout') }}" >Déconnexion</a>
+    </header>
+    <main>
+
+    </main>
+{% endblock body %}

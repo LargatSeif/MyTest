@@ -1,0 +1,124 @@
+{% extends "::base.html.twig" %}
+{% block custom_css %}
+	<style type="text/css">
+  	body , nav {
+  		background-color: #f5f5f5 ;
+  	}
+
+  	.text-nav
+  	{
+  		color: #e53935;
+  		font-size: 15px;
+  		
+  	}
+
+
+
+	.nav-wrapper
+	{
+		padding-left: 8%;
+	}
+  	.hide-on-med-and-down{
+  		padding-right: 5%;
+  		
+  	}
+
+ 	.nav-tab1:hover	
+ 	{
+		background-color: rgba(0, 0, 0, 0.0); 
+	}
+  
+  .nav-img{
+
+    
+    border :#e53935 solid;
+
+
+  }
+  .photo-prof{
+    border-right: #e53935 solid;
+    margin-left: 150px;
+
+
+    
+  }
+  .img-prof{
+    border-radius: 50% ;
+    border : #fff  8px solid;
+    margin-bottom: 90%;
+  }
+  .contacter-btn{
+    margin-top: 30%;
+    margin-left:30%;
+    
+
+  }
+  .nl-div{
+    background-color: white;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 30px;
+  }
+  .bio-div{
+    background-color: white;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 30px;
+    margin-top: 15px;
+  }
+  .btn{
+    border-radius: 15px;
+  }
+  .btn-share{
+    margin-top: 10%;
+  }
+  .btn-row{
+    background-color: #fff;
+    padding: 110%;
+    size : 180px;
+
+  }
+  
+  </style>
+{% endblock custom_css %}
+{% block body %}
+{% include "::navbar.html.twig" %}
+  <main>
+  	<br><br>
+  	<div class="container">
+  		<div class="row	">
+  			 <div class="col l3 photo-prof">
+          <img src="{{ asset('images/profile_exp.png') }}" class="img-prof" width="100%" alt="Contact Person"></img>
+         </div>
+         <div class="col l7 offset-l1 ">
+          <div class="row">
+            <div class="col l10">
+              <div class="nl-div">             
+                  <h5 ><strong> Name-Prename </strong> </h5>
+                  <p ><i class="Tiny material-icons" >room</i>hammamet,nabeul,tunsie</p>
+              </div>
+              <div class="  bio-div">
+                  <h5><strong>Biographie</strong><h5>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+              </div>
+            </div>
+              
+              <div class="col l1 btn-row">
+                   <a class="waves-effect waves-light btn green accent-4 btn-lg ">contacter Se virinaire    </a> 
+                   <a class="waves-effect waves-light btn btn-share green accent-4">Partager    </a> 
+              </div>
+           
+          
+
+          </div>
+         </div>	
+  		</div>
+  		</div>
+
+  </main>
+{% endblock %}
